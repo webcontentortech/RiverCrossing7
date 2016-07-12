@@ -1,0 +1,14 @@
+#d{
+height: 500px;
+width: 500px;
+border: solid;
+background-image: url(0.jpg);
+
+}
+
+.b{
+height:30px;
+width:30px;
+border: solid;
+background-color: orange;
+}
