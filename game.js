@@ -1,45 +1,45 @@
 $(document).ready(function() {
-    var right = true;
+    var isRight = true;
     var personscount=0;
     $("#let").click(function() {
         console.log("letclick");
-        if (right==true) {
+        if (isRight==true) {
             if(personscount>=1) {
                 $("#b").animate({marginLeft: "-600px"}, 5000);
                 console.log("s");
-                right=false;
+                isRight=false;
             }
-        } else if (right==false) {
+        } else if (isRight==false) {
             $("#b").animate({marginLeft: "0px"}, 5000);
-            right=true;
+            isRight=true;
         }
     });
 
     $("#th").click(function() {     
-            if (right) {
-                console.log(right);
+            if (isRight) {
+                console.log(isRight);
                 $("#th").animate({marginLeft: "-250px"}, 500);
-                right=false;
+                isRight=false;
                 personscount++;
                 console.log(personscount);
-            } else if (!right) {
+            } else if (!isRight) {
                 $("#th").animate({marginLeft: "0px"}, 500);
-                right=true;
+                isRight=true;
                 --personscount;
                 console.log(personscount); 
             }      
     });
 
     $("#po").click(function() {       
-            if (right==true) {
-                console.log(right==true)
+            if (isRight) {
+                console.log(isRight)
                 $("#po").animate({marginLeft: "-220px"}, 500);
-                right=false;
+                isRight=false;
                 personscount++;
                 
-            } else if (right=false) {
+            } else if (!isRight) {
                 $("#po").animate({marginLeft: "0px"}, 500);
-                right=true;
+                isRight=true;
                --personscount;
             
             }    
@@ -47,51 +47,50 @@ $(document).ready(function() {
 
     $("#redw").click(function() {
         
-            if (right==true) {
+            if (isRight) {
                 $("#redw").animate({marginTop: "-350px"}, 500),$("#redw").animate({marginLeft: "-250px"}, 500);
-                right=false;
+                isRight=false;
                 personscount++;
                 
-            } else if (right=false) {
+            } else if (!isRight) {
                 $("#redw").animate({marginLeft: "0px"}, 500),$("#redw").animate({marginTop: "+0px"}, 500);
-                right=true;
+                isRight=true;
                 --personscount;
             }
-        
     });
 
     $("#yelloww").click(function() {
-            if (right==true) {
+            if (isRight) {
                 $("#yelloww").animate({marginLeft: "-70px"}, 500);
-                right=false;
+                isRight=false;
                 personscount++;
-            } else if (right==false) {
+            } else if (!isRight) {
                 $("#yelloww").animate({marginLeft: "0px"}, 500);
-                right=true;
+                isRight=true;
                 --personscount;
             }    
     });
 
     $("#redc").click(function() {
-            if (right==true) {
+            if (isRight) {
                 $("#redc").animate({marginLeft: "-70px"}, 500);
-                right=false;
+                isRight=false;
                 personscount++;
-            } else if (right==false) {
+            } else if (!isRight) {
                 $("#redc").animate({marginLeft: "0px"}, 500);
-                right=true
+                isRight=true
                 --personscount;
             }    
     });
 
     $("#yellowc").click(function() {
-            if (right==true) {
+            if (isRight) {
                 $("#yellowc").animate({marginLeft: "-70px"}, 500);
-                right=false;
+                isRight=false;
                 personscount++;
-            } else if (right==false) {
+            } else if (!isRight) {
                 $("#yellowc").animate({marginLeft: "0px"}, 500);
-                right=true
+                isRight=true
                 --personscount;
             }    
     });
