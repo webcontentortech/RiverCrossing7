@@ -1,47 +1,45 @@
 $(document).ready(function() {
-    var count = 2;
+    var right = true;
     var personscount=0;
     $("#let").click(function() {
-            console.log();
-        if (count%2==0) {
-            if (personscount>=1) {
+        console.log("letclick");
+        if (right==true) {
+            if(personscount>=1) {
                 $("#b").animate({marginLeft: "-600px"}, 5000);
                 console.log("s");
-                count++;
+                right=false;
             }
-            } else if (count % 2 != 0) {
-                $("#b").animate({marginLeft: "0px"}, 5000);
-                count++;
-            }
-        
+        } else if (right==false) {
+            $("#b").animate({marginLeft: "0px"}, 5000);
+            right=true;
+        }
     });
-    $("#th").click(function() {
-        
-            if (count % 2 == 0) {
+
+    $("#th").click(function() {     
+            if (right) {
+                console.log(right);
                 $("#th").animate({marginLeft: "-250px"}, 500);
-                count++;
+                right=false;
                 personscount++;
                 console.log(personscount);
-            } else if (count % 2 != 0) {
+            } else if (!right) {
                 $("#th").animate({marginLeft: "0px"}, 500);
-                count++;
+                right=true;
                 --personscount;
-                console.log(personscount);
-                
-            
+                console.log(personscount); 
             }      
     });
 
-    $("#po").click(function() {
-       
-            if (count % 2 == 0) {
+    $("#po").click(function() {       
+            if (right==true) {
+                console.log(right==true)
                 $("#po").animate({marginLeft: "-220px"}, 500);
-                count++;
+                right=false;
                 personscount++;
                 
-            } else if (count % 2 != 0) {
+            } else if (right=false) {
                 $("#po").animate({marginLeft: "0px"}, 500);
-                count++;
+                right=true;
                --personscount;
             
             }    
@@ -49,51 +47,51 @@ $(document).ready(function() {
 
     $("#redw").click(function() {
         
-            if (count % 2 == 0) {
+            if (right==true) {
                 $("#redw").animate({marginTop: "-350px"}, 500),$("#redw").animate({marginLeft: "-250px"}, 500);
-                count++;
+                right=false;
                 personscount++;
                 
-            } else if (count % 2 != 0) {
+            } else if (right=false) {
                 $("#redw").animate({marginLeft: "0px"}, 500),$("#redw").animate({marginTop: "+0px"}, 500);
-                count++;
+                right=true;
                 --personscount;
             }
         
     });
 
     $("#yelloww").click(function() {
-            if (count % 2 == 0) {
+            if (right==true) {
                 $("#yelloww").animate({marginLeft: "-70px"}, 500);
-                count++;
+                right=false;
                 personscount++;
-            } else if (count % 2 != 0) {
+            } else if (right==false) {
                 $("#yelloww").animate({marginLeft: "0px"}, 500);
-                count++;
+                right=true;
                 --personscount;
             }    
     });
 
     $("#redc").click(function() {
-            if (count % 2 == 0) {
+            if (right==true) {
                 $("#redc").animate({marginLeft: "-70px"}, 500);
-                count++;
+                right=false;
                 personscount++;
-            } else if (count % 2 != 0) {
+            } else if (right==false) {
                 $("#redc").animate({marginLeft: "0px"}, 500);
-                count++;
+                right=true
                 --personscount;
             }    
     });
 
     $("#yellowc").click(function() {
-            if (count % 2 == 0) {
+            if (right==true) {
                 $("#yellowc").animate({marginLeft: "-70px"}, 500);
-                count++;
+                right=false;
                 personscount++;
-            } else if (count % 2 != 0) {
+            } else if (right==false) {
                 $("#yellowc").animate({marginLeft: "0px"}, 500);
-                count++;
+                right=true
                 --personscount;
             }    
     });
