@@ -1,96 +1,127 @@
 $(document).ready(function() {
-    var isRight = true;
+    var thiefisRight = true;
+    var polisRight = true;
+    var redwisRight = true;
+    var redcisRight = true;
+    var redc2isRight = true;
+    var yellowwisRight = true;
+    var yellowcisRight = true;
+    var yellowc2isRight = true;
     var personscount=0;
-    $("#let").click(function() {
-        console.log("letclick");
-        if (isRight==true) {
-            if(personscount>=1) {
-                $("#b").animate({marginLeft: "-600px"}, 5000);
-                console.log("s");
-                isRight=false;
-            }
-        } else if (isRight==false) {
-            $("#b").animate({marginLeft: "0px"}, 5000);
-            isRight=true;
-        }
+    
+    $("#let").click(function() {     
+        console.log(personscount);
+            if ((personscount==1)||(personscount==2)) {
+                $("#b").animate({marginLeft: "-400px"}, 500);
+                console.log(personscount);
+            } else if (personscount==0) {
+                $("#b").animate({marginLeft: "0px"}, 500);
+            }      
     });
 
     $("#th").click(function() {     
-            if (isRight) {
-                console.log(isRight);
+        console.log("In thief click :: ", thiefisRight);;
+            if (thiefisRight) {
+                console.log(thiefisRight);
                 $("#th").animate({marginLeft: "-250px"}, 500);
-                isRight=false;
+                thiefisRight=false;
                 personscount++;
                 console.log(personscount);
-            } else if (!isRight) {
+            } else if (!thiefisRight) {
                 $("#th").animate({marginLeft: "0px"}, 500);
-                isRight=true;
+                thiefisRight=true;
                 --personscount;
-                console.log(personscount); 
+                console.log(personscount);
             }      
     });
 
     $("#po").click(function() {       
-            if (isRight) {
-                console.log(isRight)
+        console.log("In polices click :: ", polisRight);;
+            if (polisRight) {
+                console.log(polisRight)
                 $("#po").animate({marginLeft: "-220px"}, 500);
-                isRight=false;
+                polisRight=false;
                 personscount++;
                 
-            } else if (!isRight) {
+            } else if (!polisRight) {
                 $("#po").animate({marginLeft: "0px"}, 500);
-                isRight=true;
+                polisRight=true;
                --personscount;
-            
             }    
     });
 
     $("#redw").click(function() {
         
-            if (isRight) {
+            if (redwisRight) {
                 $("#redw").animate({marginTop: "-350px"}, 500),$("#redw").animate({marginLeft: "-250px"}, 500);
-                isRight=false;
+                redwisRight=false;
                 personscount++;
                 
-            } else if (!isRight) {
+            } else if (!redwisRight) {
                 $("#redw").animate({marginLeft: "0px"}, 500),$("#redw").animate({marginTop: "+0px"}, 500);
-                isRight=true;
+                redwisRight=true;
                 --personscount;
             }
     });
 
     $("#yelloww").click(function() {
-            if (isRight) {
-                $("#yelloww").animate({marginLeft: "-70px"}, 500);
-                isRight=false;
+            if (yellowwisRight) {
+                $("#yelloww").animate({marginLeft: "-400px"}, 500);
+                yellowwisRight=false;
                 personscount++;
-            } else if (!isRight) {
+            } else if (!yellowwisRight) {
                 $("#yelloww").animate({marginLeft: "0px"}, 500);
-                isRight=true;
+                yellowwisRight=true;
                 --personscount;
             }    
     });
 
     $("#redc").click(function() {
-            if (isRight) {
-                $("#redc").animate({marginLeft: "-70px"}, 500);
-                isRight=false;
+            if (redcisRight) {
+                $("#redc").animate({marginTop: "-350px"}, 500),$("#redc").animate({marginLeft: "-250px"}, 500);
+                redcisRight=false;
                 personscount++;
-            } else if (!isRight) {
-                $("#redc").animate({marginLeft: "0px"}, 500);
-                isRight=true
+            } else if (!redcisRight) {
+                $("#redc").animate({marginLeft: "0px"}, 500),$("#redc").animate({marginTop: "+0px"}, 500);
+                redcisRight=true
+                --personscount;
+            }    
+    });
+
+    $("#redc2").click(function() {
+            if (redc2isRight) {
+                $("#redc2").animate({marginTop: "-350px"}, 500),$("#redc2").animate({marginLeft: "-250px"}, 500);
+                redc2isRight=false;
+                personscount++;
+            } else if (!redc2isRight) {
+                $("#redc2").animate({marginLeft: "0px"}, 500),$("#redc2").animate({marginTop: "+0px"}, 500);
+                redc2isRight=true
                 --personscount;
             }    
     });
 
     $("#yellowc").click(function() {
-            if (isRight) {
-                $("#yellowc").animate({marginLeft: "-70px"}, 500);
-                isRight=false;
+            if (yellowcisRight) {
+                console.log(yellowcisRight);
+                $("#yellowc").animate({marginLeft: "-320px"}, 500);
+                yellowcisRight=false;
                 personscount++;
-            } else if (!isRight) {
+            } else if (!yellowcisRight) {
                 $("#yellowc").animate({marginLeft: "0px"}, 500);
-                isRight=true
+                yellowcisRight=true;
+                --personscount;
+            }    
+    });
+
+    $("#yellowc2").click(function() {
+            if (yellowc2isRight) {
+                console.log(yellowc2isRight);
+                $("#yellowc2").animate({marginTop: "-250px"}, 500),$("#yellowc2").animate({marginLeft: "-250px"}, 500);
+                yellowc2isRight=false;
+                personscount++;
+            } else if (!yellowc2isRight) {
+                $("#yellowc2").animate({marginLeft: "0px"}, 500),$("#yellowc2").animate({marginTop: "+0px"}, 500);
+                yellowc2isRight=true
                 --personscount;
             }    
     });
