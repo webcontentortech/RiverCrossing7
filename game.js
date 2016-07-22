@@ -1,129 +1,99 @@
 $(document).ready(function() {
-    var thiefisRight = true;
-    var polisRight = true;
-    var redwisRight = true;
-    var redcisRight = true;
-    var redc2isRight = true;
-    var yellowwisRight = true;
-    var yellowcisRight = true;
-    var yellowc2isRight = true;
-    var personscount = 0;
-    var letsclick = 0;
-    var isthiefinboat = false;
-    var thrivercrossed = false;
-    var thisleftofriver = false;
-    var count = 0;
-    var count1 = 0;
-    var poisleftofriver = true;
-    var porivercrossed = false;
-    var policeisRight = true;
-    var ispoinboat = false;
-    var isboatright = true;
-    var isthiefleft = false;
+    var isThiefRight = true;
+    var isThiefInBoat = false;
+    var isBoatRight = true;
+    var whoIsInBoatFirst;
+    var isRight=true;
 
-    $("#th").click(function() {
-        console.log("In thief click :: ", thiefisRight);;
-        if (thiefisRight) {
-            if (isboatright) {
-                console.log(thiefisRight);
-                $("#th").animate({marginLeft: "-250px"}, 500);
-                thiefisRight = false;
-                console.log(thiefisRight);
-                isthiefinboat = true;
-                console.log(isthiefinboat);
 
-            }
-        } else if (!thiefisRight) {
-            console.log("In thief click :: ", !thiefisRight);
-            if (isboatright) {
-                console.log("In thief click :: ", isboatright);;
-                if (!thrivercrossed) {$("#th").animate({marginLeft: "0px"}, 500);
-                    thiefisRight = true;
-                    isthiefinboat = false;
+    $("#thief").click(function() {
+        var thiefRightLocation = "0px";
+        var thiefInBoatRightLocation = "-250px"; 
+        console.log(thiefInBoatRightLocation);
+        var thiefLeftLocation = "-950px";
+        var thiefInBoatLeftLocation = "-650px";
+        var thiefId = "#thief"
 
-                }
-            }
-        }
-        if (count == 0) {
-            if (!thiefisRight) {
-                console.log(!thiefisRight);
-                if (!isboatright) {
-                    console.log(!isboatright);
-                    console.log(thrivercrossed);
-                    $("#th").animate({marginLeft: "-950px"}, 500);
-                    thisleftofriver = true;
-                    isthiefinboat = false;
-                    isthiefleft = true;
-                    count++;
-                }
-
-            }
-
-        } else if (count == 1) {
-            if (!thiefisRight) {
-                console.log(!thiefisRight);
-                if (!isboatright) {
-                    console.log(!isboatright);
-                    console.log(thisleftofriver);
-                    $("#th").animate({marginLeft: "-650px"}, 500);
-                    thisleftofriver = true;
-                    --count;
-                    isthiefleft = false;
-                    isthiefinboat = true;
-                }
+        if (isThiefRight && isBoatRight) {
+            console.log(isThiefRight && isBoatRight);
+            if (! isThiefInBoat) {
+                doOnClickThiefRightNotInBoat(thiefId, thiefInBoatRightLocation)
+                                
+            } else {
+                doOnClickThiefRightInBoat(thiefId,thiefRightLocation)
             }
         }
 
+        if(! isThiefRight && ! isBoatRight){
+            console.log(! isThiefRight && ! isBoatRight);
+            if (isThiefInBoat) {
+                doOnClickThiefLeftInBoat(thiefId,thiefLeftLocation)
+
+            } else {
+                doOnClickThiefLeftNotInBoat(thiefId,thiefInBoatLeftLocation)
+            }
+        }
     });
 
     $("#let").click(function() {
-        if (letsclick == 0) {
-            if (!isthiefinboat) {
-                $("#b").animate({marginLeft: '-400px'},2000);
-                letsclick++;
-                isboatright = false;
+        if (isBoatRight) {
+            console.log("isBoatRight",isBoatRight);
+            $("#boat").animate({marginLeft: '-400px'}, {duration: 2000,queue: false}); 
+            isBoatRight = false;
+            if (whoIsInBoatFirst != "") {
+                $(whoIsInBoatFirst).animate({marginLeft: '-650px'}, {duration: 2000,queue: false});
+                makePersonInBoatStateChange(whoIsInBoatFirst, false);
             }
-        } else if (letsclick == 1) {
-            if (!isthiefinboat) {
-                $("#b").animate({marginLeft: '0px'},2000);
-                --letsclick;
-                isboatright = true;
-            }
-        }
-        if (count1 == 0) {
-            if (isthiefinboat) {
-                console.log(isthiefinboat);
-                if (letsclick == 0) {
-                    console.log(letsclick == 0);
-                    $("#b").animate({marginLeft: '-400px'}, {duration: 2000,queue: false});
-                    $("#th").animate({marginLeft: '-650px'}, {duration: 2000,queue: false});
-                    thrivercrossed = true;
-                    isboatright = false;
-                    letsclick++;
-                    console.log("In let click :: ", thrivercrossed);
-                    count1++;
-
-                }
-            }
-        } else if (letsclick == 1) {
-            if (count1 == 1) {
-                console.log(letsclick == 1);
-                if (isthiefinboat) {
-                    console.log(isthiefinboat);
-                    $("#b").animate({ marginLeft: '0px'}, {duration: 2000,queue: false});
-                    $("#th").animate({marginLeft: '-250px'}, {duration: 2000,queue: false});
-                    --letsclick;
-                    --count1;
-                    thisleftofriver = false;
-                    thrivercrossed = false;
-                    thiefisRight = false;
-                    isboatright = true;
-
-
-                }
+            console.log("isBoatRight",isBoatRight);
+        } else {
+            $("#boat").animate({marginLeft: '0px'}, {duration: 2000,queue: false});
+            isBoatRight = true;
+            if (whoIsInBoatFirst != "") { 
+                $(whoIsInBoatFirst).animate({marginLeft: '-250px'}, {duration: 2000,queue: false});
+                makePersonInBoatStateChange(whoIsInBoatFirst, true);
             }
         }
+    });
+    function makePersonInBoatStateChange(whoIsInBoatFirst, isRight) {
+        
+        var res = whoIsInBoatFirst.replace("#", "");
+        var thiefstring = "isThiefRight";
 
+        if (thiefstring.indexOf(res) > -1) {
+            isThiefRight = false;
+            console.log(isThiefRight);
+        }
+    }
 
-    })
+    var doOnClickThiefRightNotInBoat = function(thiefId, thiefInBoatRightLocation) {
+        console.log(thiefInBoatRightLocation);
+        $(thiefId).animate({marginLeft: thiefInBoatRightLocation}, 500);
+        console.log(thiefId);
+        console.log(thiefInBoatRightLocation);
+        isThiefInBoat = true;
+        whoIsInBoatFirst = "#thief";
+        isThiefRight = true;
+    };
+
+    var doOnClickThiefRightInBoat = function(thiefId,thiefRightLocation){
+        $(thiefId).animate({marginLeft: thiefRightLocation}, 500);
+        isThiefInBoat = false;
+        whoIsInBoatFirst = "";
+        isThiefRight = true;
+    };
+
+    var doOnClickThiefLeftInBoat = function (thiefId,thiefLeftLocation) {
+        $(thiefId).animate({marginLeft: thiefLeftLocation}, 500);
+        isThiefInBoat = false;
+        whoIsInBoatFirst = "";
+        isThiefRight = false;
+    };
+
+    var doOnClickThiefLeftNotInBoat = function (thiefId,thiefInBoatLeftLocation) {
+        $(thiefId).animate({marginLeft: thiefInBoatLeftLocation}, 500);
+        isThiefInBoat = true;
+        whoIsInBoatFirst = "#thief";
+        isThiefRight = false;
+    };      
+      
 });
