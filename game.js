@@ -1,129 +1,214 @@
 $(document).ready(function() {
-    var thiefisRight = true;
-    var polisRight = true;
-    var redwisRight = true;
-    var redcisRight = true;
-    var redc2isRight = true;
-    var yellowwisRight = true;
-    var yellowcisRight = true;
-    var yellowc2isRight = true;
-    var personscount=0;
     
-    $("#let").click(function() {     
-        console.log(personscount);
-            if ((personscount==1)||(personscount==2)) {
-                $("#b").animate({marginLeft: "-400px"}, 500);
-                console.log(personscount);
-            } else if (personscount==0) {
-                $("#b").animate({marginLeft: "0px"}, 500);
-            }      
-    });
-
-    $("#th").click(function() {     
-        console.log("In thief click :: ", thiefisRight);;
-            if (thiefisRight) {
-                console.log(thiefisRight);
-                $("#th").animate({marginLeft: "-250px"}, 500);
-                thiefisRight=false;
-                personscount++;
-                console.log(personscount);
-            } else if (!thiefisRight) {
-                $("#th").animate({marginLeft: "0px"}, 500);
-                thiefisRight=true;
-                --personscount;
-                console.log(personscount);
-            }      
-    });
-
-    $("#po").click(function() {       
-        console.log("In polices click :: ", polisRight);;
-            if (polisRight) {
-                console.log(polisRight)
-                $("#po").animate({marginLeft: "-220px"}, 500);
-                polisRight=false;
-                personscount++;
-                
-            } else if (!polisRight) {
-                $("#po").animate({marginLeft: "0px"}, 500);
-                polisRight=true;
-               --personscount;
-            }    
-    });
-
-    $("#redw").click(function() {
-        
-            if (redwisRight) {
-                $("#redw").animate({marginTop: "-350px"}, 500),$("#redw").animate({marginLeft: "-250px"}, 500);
-                redwisRight=false;
-                personscount++;
-                
-            } else if (!redwisRight) {
-                $("#redw").animate({marginLeft: "0px"}, 500),$("#redw").animate({marginTop: "+0px"}, 500);
-                redwisRight=true;
-                --personscount;
+    var isBoatRight = true;
+    var isRight = true;
+    var boatData = {
+        id: 'boat',
+        noOfPersonInBoat: 0,
+        isRight: true,
+        rightLocation: "0px",
+        leftLocation: "-400px",
+        person: { 
+            first: {
+                id: "",
+            },
+            second: {
+                id: ""
+            },
+            location: { 
+                leftLocation: "-650px",
+                rightLocation: "-250px"
             }
-    });
+        }
+    }
 
-    $("#yelloww").click(function() {
-            if (yellowwisRight) {
-                $("#yelloww").animate({marginLeft: "-400px"}, 500);
-                yellowwisRight=false;
-                personscount++;
-            } else if (!yellowwisRight) {
-                $("#yelloww").animate({marginLeft: "0px"}, 500);
-                yellowwisRight=true;
-                --personscount;
-            }    
-    });
+    var personData = {
+        thief: { 
+            isRight: true, 
+            isInBoat: false,
+            location: {
+                right: "0px",
+                rightInBoat:"-250px",
+                leftInBoat: "-650px",
+                left: "-950px"
+            }
+        },
+        police: { 
+            isRight: true, 
+            isInBoat: false,
+            location: {
+                right: "0px",
+                rightInBoat:"-250px",
+                leftInBoat: "-650px",
+                left: "-950px"
+            }
+        },
+         redwoman: { 
+            isRight: true, 
+            isInBoat: false,
+            location: {
+                right: "0px",
+                rightInBoat:"-250px",
+                leftInBoat: "-650px",
+                left: "-950px"
+            }
+        },
+        yellowwoman: { 
+            isRight: true, 
+            isInBoat: false,
+            location: {
+                right: "0px",
+                rightInBoat:"-250px",
+                leftInBoat: "-650px",
+                left: "-950px"
+            }
+        },
+    };
 
-    $("#redc").click(function() {
-            if (redcisRight) {
-                $("#redc").animate({marginTop: "-350px"}, 500),$("#redc").animate({marginLeft: "-250px"}, 500);
-                redcisRight=false;
-                personscount++;
-            } else if (!redcisRight) {
-                $("#redc").animate({marginLeft: "0px"}, 500),$("#redc").animate({marginTop: "+0px"}, 500);
-                redcisRight=true
-                --personscount;
-            }    
-    });
+    var DoOnletclick = function () {
+        console.log('boatData -----------', boatData);
+        if (boatData.isRight) {
+            moveBoatLeft()
+        } else {
+            moveBoatRight()
+        }
+    }
 
-    $("#redc2").click(function() {
-            if (redc2isRight) {
-                $("#redc2").animate({marginTop: "-350px"}, 500),$("#redc2").animate({marginLeft: "-250px"}, 500);
-                redc2isRight=false;
-                personscount++;
-            } else if (!redc2isRight) {
-                $("#redc2").animate({marginLeft: "0px"}, 500),$("#redc2").animate({marginTop: "+0px"}, 500);
-                redc2isRight=true
-                --personscount;
-            }    
-    });
+    var moveBoatLeft = function () {
+        $(getBoatId()).animate({marginLeft: boatData.leftLocation}, {duration: 2000,queue: false});
+            boatData.isRight = false;
+            if (getElementId(boatData.person.first.id)!= "") {
+                console.log("personId", getElementId(boatData.person.first.id));
+                $(getElementId(boatData.person.first.id)).animate({marginLeft: boatData.person.location.leftLocation}, {duration: 2000,queue: false});
+                personData[boatData.person.first.id].isRight = false;
+            }
+            if (getElementId(boatData.person.second.id)!= "") {
+                console.log("personId", getElementId(boatData.person.second.id));
+                $(getElementId(boatData.person.second.id)).animate({marginLeft: boatData.person.location.leftLocation}, {duration: 2000,queue: false});
+                personData[boatData.person.second.id].isRight = false;
+            }
+    }
 
-    $("#yellowc").click(function() {
-            if (yellowcisRight) {
-                console.log(yellowcisRight);
-                $("#yellowc").animate({marginLeft: "-320px"}, 500);
-                yellowcisRight=false;
-                personscount++;
-            } else if (!yellowcisRight) {
-                $("#yellowc").animate({marginLeft: "0px"}, 500);
-                yellowcisRight=true;
-                --personscount;
-            }    
-    });
+    var moveBoatRight = function () {
+        $(getBoatId()).animate({marginLeft: boatData.rightLocation}, {duration: 2000,queue: false});
+            boatData.isRight = true;
+            if (getElementId(boatData.person.first.id)!= "") {
+                console.log("personId", getElementId(boatData.person.first.id));
+                $(getElementId(boatData.person.first.id)).animate({marginLeft: boatData.person.location.rightLocation}, {duration: 2000,queue: false});
+                personData[boatData.person.first.id].isRight = true;
+            }
+            if (getElementId(boatData.person.second.id)!= "") {
+                console.log("personId", getElementId(boatData.person.second.id));
+                $(getElementId(boatData.person.second.id)).animate({marginLeft: boatData.person.location.rightLocation}, {duration: 2000,queue: false});
+                personData[boatData.person.second.id].isRight = true;
+            }
+    }
 
-    $("#yellowc2").click(function() {
-            if (yellowc2isRight) {
-                console.log(yellowc2isRight);
-                $("#yellowc2").animate({marginTop: "-250px"}, 500),$("#yellowc2").animate({marginLeft: "-250px"}, 500);
-                yellowc2isRight=false;
-                personscount++;
-            } else if (!yellowc2isRight) {
-                $("#yellowc2").animate({marginLeft: "0px"}, 500),$("#yellowc2").animate({marginTop: "+0px"}, 500);
-                yellowc2isRight=true
-                --personscount;
-            }    
+    var getElementId = function (personId) {
+        return personId === "" ? "" : "#" + personId;
+    }
+
+    var getBoatId = function () {
+        return boatData.id === "" ? "" : "#" + boatData.id;
+    }
+
+     var doOnPersonClick = function(personId){
+        
+            if (personData[personId].isRight && boatData.isRight) {
+                doOnClickPersonRightBoatRight(personId)
+            }
+            if (!personData[personId].isRight && !boatData.isRight) {
+                doOnClickPersonLeftBoatLeft(personId)
+            }
+        
+    }
+
+    var doOnClickPersonRightBoatRight = function (personId) {
+        console.log('AAAAAA -------------', personData[personId].isInBoat);
+       if (!personData[personId].isInBoat) {
+                doOnClickPersonRightNotInBoat(personId, personData[personId].location.rightInBoat)
+                personData[personId].isInBoat = true;
+                if (boatData.noOfPersonInBoat === 0 ) {
+                    boatData.person.first.id = personId;
+                } else {
+                    boatData.person.second.id = personId;
+                }
+                
+                boatData.noOfPersonInBoat++;
+
+            } else {
+                doOnClickPersonRightInBoat(personId, personData[personId].location.right)
+                personData[personId].isInBoat = false;
+                if (boatData.person.first.id == personId) {
+                    boatData.person.first.id = "";
+                } else {
+                    boatData.person.second.id = "";
+                }
+                --boatData.noOfPersonInBoat;
+            }
+    }
+
+    var doOnClickPersonRightNotInBoat = function(personId,location) {
+        if (boatData.noOfPersonInBoat < 2) {
+            $(getElementId(personId)).animate({marginLeft: location}, 500);
+        }
+    };
+
+     var doOnClickPersonRightInBoat = function(personId,location) {
+        $(getElementId(personId)).animate({marginLeft: location}, 500);
+    };
+
+    var doOnClickPersonLeftBoatLeft = function (personId) {
+        if (personData[personId].isInBoat) {
+                doOnClickPersonLeftInBoat(personId, personData[personId].location.left)
+                personData[personId].isInBoat = false;
+                if (boatData.person.first.id == personId) {
+                    boatData.person.first.id = "";
+                } else {
+                    boatData.person.second.id = "";
+                }
+                --boatData.noOfPersonInBoat;
+            } else {
+                doOnClickPersonLeftNotInBoat(personId, personData[personId].location.leftInBoat)
+                personData[personId].isInBoat = true;
+                if (boatData.noOfPersonInBoat === 0 ) {
+                    boatData.person.first.id = personId;
+                } else {
+                    boatData.person.second.id = personId;
+                }   
+                boatData.noOfPersonInBoat++;
+            }
+    }
+
+    var doOnClickPersonLeftInBoat = function(personId, location) {
+        $(getElementId(personId)).animate({marginLeft: location}, 500);
+    };
+
+    var doOnClickPersonLeftNotInBoat = function(personId,location) {
+        if (boatData.noOfPersonInBoat < 2) {
+        $(getElementId(personId)).animate({marginLeft: location}, 500);
+        }
+    };
+
+    $("#thief").click(function() {
+        doOnPersonClick("thief")
+        console.log('Now number of person  in boat:: ', boatData.noOfPersonInBoat);
+    });
+    $("#police").click(function() {
+        doOnPersonClick("police")
+        console.log('Now number of person  in boat:: ', boatData.noOfPersonInBoat);
+    });
+    $("#redwoman").click(function() {
+        doOnPersonClick("redwoman")
+        console.log('Now number of person  in boat:: ', boatData.noOfPersonInBoat);
+    });
+    $("#yellowwoman").click(function() {
+        doOnPersonClick("yellowwoman")
+        console.log('Now number of person  in boat:: ', boatData.noOfPersonInBoat);
+    });
+   
+    $("#let").click(function() {
+        DoOnletclick();
     });
 
 });
